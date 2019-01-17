@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Schuhbestellung</title>
+    <!-- weitere Kopfinformationen -->
+    <!-- Kommentare werden im Browser nicht angezeigt. -->
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td, th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #e1e1ff;
+		}
+		p {
+			margin-top: 2em
+		}
+		footer {
+			position: fixed;
+			padding: 1px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+		.button {
+			background-color: #8888ff;
+			border: double;
+			color: white;
+			padding: 15px 25px;
+			text-align: center;
+			font-size: 16px;
+			cursor: pointer;
+		}
+	</style>
+  </head>
+  <body>
+    <h1 align="center">Schuhbestellung Auszubildende</h1>
+	<h3 align="center">UVEX Si-Halbschuh S2 8534 UVEX 1 Weite XB(11)</h3>
+	<p>
+	<table id="myTable">
+		<tr>
+			<th>Artikelnummer</th>
+			<th>Gr&ouml&szlige</th>
+			<th>Anzahl Paare</th>
+		</tr>
+		<tr>
+			<td>A4510290135</td>
+			<td>35</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290136</td>
+			<td>36</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290137</td>
+			<td>37</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290138</td>
+			<td>38</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290139</td>
+			<td>39</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290140</td>
+			<td>40</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290141</td>
+			<td>41</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290142</td>
+			<td>42</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290143</td>
+			<td>43</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290144</td>
+			<td>44</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290145</td>
+			<td>45</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290146</td>
+			<td>46</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290147</td>
+			<td>47</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290148</td>
+			<td>48</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290149</td>
+			<td>49</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290150</td>
+			<td>50</td>
+			<td><input type="number"/></td>
+		</tr>
+		<tr>
+			<td>A4510290151</td>
+			<td>51</td>
+			<td><input type="number"/></td>
+		</tr>
+		
+		<!-- weitere Schuharten/Größen können einfach hinzugefügt werden, indem -->
+		<!-- man den folgenden Abschnitt kopiert und einfügt -->
+		<tr>
+			<td>A4510290152</td>
+			<td>52</td>
+			<td><input type="number"/></td>
+		</tr>
+		<!-- Bis hier!!! -->
+		
+	</table>
+	<p>
+	<div class="wrapper" align= "right">
+		<button class="button" onclick="myFunction()">Abschicken</button>
+	</div>
+	
+	<script>
+	function myFunction() {
+		var body_str = "Moin Herr Knaack,%0Abitte bestellen Sie folgende Schuhe:%0A%0A";
+	
+		var x = document.getElementById("myTable").rows;
+		var AnzahlBestellungen = 0;
+		for(var i = 1; i < x.length; i++){
+			<!-- jede Zeile durchgehen -->
+			var Schuhname = x[i].children[0].innerText;
+			var Größe = x[i].children[1].innerText;
+			var Anzahl = x[i].children[2].firstChild.value;
+			
+			if(Anzahl != "" && Anzahl != "0"){
+				AnzahlBestellungen++;
+				body_str += Schuhname + "     Größe: " + Größe + "     " + Anzahl;
+				if(Anzahl == 1)body_str += " Paar%0A";
+				else body_str += " Paare%0A";
+			}
+		}
+		body_str += "%0AVielen Dank und Viele Grüße!%0A%0A";
+		
+		var link = "mailto:thomas.knaack@philips.com?subject=Schuhbestellung Auszubildende&body=" + body_str;
+		if(AnzahlBestellungen > 0)
+			window.open(link);
+		else
+			alert("Bitte wähle zuerst aus, welche Schuhe bestellt werden sollen!");
+	}
+	</script>	
+  </body>
+  <footer><font size="1"><i>&copy Constantin Koch 2019</i></font></footer>
+</html>
